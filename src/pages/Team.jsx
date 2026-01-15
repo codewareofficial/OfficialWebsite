@@ -1,16 +1,16 @@
-import TeamSection from "@/components/TeamSection";
-import teamMembers from "@/data/team.json";
+import TeamSection from "../components/TeamSection";
+import { coreMembers, semiCoreMembers } from "../data/Team";
 
-const Teams = () => {
+const Team = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-background text-foreground">
       {/* Core Team */}
-      <TeamSection title="Core Team" members={teamMembers} />
+      <TeamSection title="Core Team" members={coreMembers} />
 
-      {/* You can later add Semi-Core or Alumni like this: */}
-      {/* <TeamSection title="Semi-Core Team" members={semiCoreMembers} /> */}
+      {/* Semi-Core Team */}
+      <TeamSection title="Semi-Core Team" members={semiCoreMembers} />
     </div>
   );
 };
 
-export default Teams;
+export default Team;
