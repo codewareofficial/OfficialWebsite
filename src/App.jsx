@@ -2,11 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
 
 import Home from "./pages/Home";
-import Events from "./pages/Events";
 import Projects from "./pages/Projects";
 import Team from "./pages/Team";
-import Contact from "./pages/Contact";
-import Join from "./pages/Join";
+import Connect from "./pages/Connect";
 
 function App() {
   return (
@@ -14,11 +12,9 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/projects" element={<Projects />} />
+          <Route path="/events" element={<Projects />} />
           <Route path="/team" element={<Team />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/join" element={<Join />} />
+          <Route path="/connect" element={<Connect />} />
         </Route>
       </Routes>
     </BrowserRouter>

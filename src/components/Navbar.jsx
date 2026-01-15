@@ -1,16 +1,33 @@
-import { Link, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const links = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Projects", path: "/projects" },
+    { name: "About", path: "/#who-we-are" },
+    { name: "Events", path: "/events" },
     { name: "Team", path: "/team" },
-    { name: "Contact", path: "/contact" },
+    { name: "Connect", path: "/connect" },
   ];
+
+  const handleNavClick = (path) => {
+    if (path.includes("#")) {
+      const [route, hash] = path.split("#");
+      navigate(route);
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 0);
+    } else {
+      navigate(path);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur">
@@ -23,21 +40,14 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-6 items-center">
           {links.map((link) => (
-            <NavLink
+            <button
               key={link.name}
-              to={link.path}
-              className={({ isActive }) =>
-                `text-sm font-medium transition ${
-                  isActive ? "text-primary" : "text-muted-foreground"
-                } hover:text-primary`
-              }
+              onClick={() => handleNavClick(link.path)}
+              className="text-sm font-medium transition hover:text-primary cursor-pointer"
             >
               {link.name}
-            </NavLink>
+            </button>
           ))}
-          <Button asChild>
-            <Link to="/join">Join Us</Link>
-          </Button>
         </nav>
 
         {/* Mobile Menu */}
@@ -51,17 +61,10 @@ const Navbar = () => {
             <SheetContent>
               <div className="flex flex-col gap-4 mt-10">
                 {links.map((link) => (
-                  <Link
-                    key={link.name}
-                    to={link.path}
-                    className="text-lg font-medium"
-                  >
+                  <button key={link.name} onClick={() => handleNavClick(link.path)} className="text-lg font-medium text-left">
                     {link.name}
-                  </Link>
+                  </button>
                 ))}
-                <Button asChild>
-                  <Link to="/join">Join Us</Link>
-                </Button>
               </div>
             </SheetContent>
           </Sheet>

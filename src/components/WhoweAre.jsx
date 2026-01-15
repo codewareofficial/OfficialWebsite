@@ -21,7 +21,7 @@ const points = [
 
 const WhoWeAre = () => {
   return (
-    <section className="relative py-20 bg-neutral-900 text-white overflow-hidden">
+    <section id="who-we-are" className="relative py-20 bg-neutral-900 text-white overflow-hidden">
 
       {/* Floating background shapes */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
