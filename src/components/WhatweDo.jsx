@@ -1,26 +1,32 @@
 import { motion } from "framer-motion";
+import { GrWorkshop } from "react-icons/gr";
+import { IoCodeSlashSharp } from "react-icons/io5";
+import { GiSoapExperiment } from "react-icons/gi";
 
-// Activities data
+// Example: You can import any React Icon you want
+// import { FaLaptopCode, FaChalkboardTeacher, FaProjectDiagram } from "react-icons/fa";
+
 const activities = [
   {
     title: "Coding Contests",
     desc: "Competitive events for coders to test their skills and solve real problems.",
-    icon: "/images/activities/code.svg",
+    // Use React component here instead of image
+    icon: < IoCodeSlashSharp className="text-blue-500 w-12 h-12 mx-auto mb-4" />,
   },
   {
     title: "Workshops",
     desc: "Skill-building sessions on web, app, AI, and more, guided by seniors and mentors.",
-    icon: "/images/activities/workshop.svg",
+    icon:  <GrWorkshop   className="text-green-400 w-12 h-12 mx-auto mb-4" />,
   },
   {
     title: "Hack Challenges",
     desc: "Mini coding challenges to encourage learning and experimentation.",
-    icon: "/images/activities/challenge.svg",
+    icon: < GiSoapExperiment className="text-yellow-400 w-12 h-12 mx-auto mb-4" />,
   },
   {
     title: "Collaborative Projects",
     desc: "Group projects to solve real-world problems and build portfolios.",
-    icon: "/images/activities/project.svg",
+    icon: <GrWorkshop className="text-purple-400 w-12 h-12 mx-auto mb-4" />,
   },
 ];
 
@@ -74,9 +80,7 @@ const WhatWeDo = () => {
               className="bg-neutral-700 p-6 rounded-xl shadow-lg hover:shadow-xl cursor-pointer"
             >
               {/* Icon */}
-              <div className="w-16 h-16 mx-auto mb-4">
-                <img src={activity.icon} alt={activity.title} className="w-full h-full object-contain" />
-              </div>
+              {activity.icon}
 
               {/* Title & Description */}
               <h3 className="font-semibold text-xl mb-2">{activity.title}</h3>
