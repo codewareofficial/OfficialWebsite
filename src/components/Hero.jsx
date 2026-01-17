@@ -1,55 +1,42 @@
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import React, { useEffect } from "react";
+import { initHeroSlider } from "@/animations/heroanimations";
+
+const images = [
+  "/images/hero/Mainhero.png",
+  "/images/hero/LeaderBoard.png",
+  "/images/hero/LeaderBoard-Women.png",
+];
 
 const Hero = () => {
+  useEffect(() => {
+    initHeroSlider();
+  }, []);
+
   return (
-    <section className="min-h-[90vh] flex items-center justify-center bg-linear-to-b from-black to-neutral-900 text-white relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6 text-center">
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Slides */}
+      {images.map((img, index) => (
+        <img
+          key={index}
+          src={img}
+          alt="Hero Slide"
+          className="hero-slide absolute inset-0 w-full h-full object-cover object-center opacity-0"
+        />
+      ))}
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-bold tracking-tight"
-        >
-          Where Coders Compete, Build, and Grow.
-        </motion.h1>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 z-10"></div>
 
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="mt-6 text-lg md:text-xl text-neutral-300 max-w-3xl mx-auto"
-        >
-          CodeWare is the official coding and development community, organizing contests, technical initiatives, and building real-world technology together.
-        </motion.p>
+      {/* Content */}
+      <div className="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">
 
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-4 text-sm uppercase tracking-widest text-neutral-400"
-        >
-          Code. Compete. Create.
-        </motion.p>
+        </h1>
+        <p className="text-lg md:text-xl max-w-2xl">
 
-        {/* Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="mt-10"
-        >
-          <Button size="lg" className="px-8 py-6 text-lg">
-            Explore
-          </Button>
-        </motion.div>
-
+        </p>
       </div>
-    </section>
+    </div>
   );
 };
 

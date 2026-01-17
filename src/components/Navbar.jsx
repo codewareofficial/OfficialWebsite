@@ -11,30 +11,36 @@ const Navbar = () => {
     { name: "About", path: "/#who-we-are" },
     { name: "Events", path: "/events" },
     { name: "Team", path: "/team" },
-    { name: "Connect", path: "/connect" },
+    { name: "Join", path: "/join" },
+    { name: "Connect", path: "/#footer" },
   ];
 
   const handleNavClick = (path) => {
     if (path.includes("#")) {
       const [route, hash] = path.split("#");
-      navigate(route);
+      navigate(route || "/");
       setTimeout(() => {
         const element = document.getElementById(hash);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
-      }, 0);
+      }, 100); // small delay to ensure element exists
     } else {
       navigate(path);
     }
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur">
-      <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b bg-neutral-950/95 backdrop-blur border-neutral-800">
+      <div className="mx-auto max-w-7xl px-4 h-20 flex items-center justify-between">
+
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold">
-          Codeware
+        <Link to="/">
+          <img
+            src="/images/updatedlogo.png" // place your logo in public/images/logo.png
+            alt="Codeware Logo"
+            className="h-16 w-auto"
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -43,7 +49,7 @@ const Navbar = () => {
             <button
               key={link.name}
               onClick={() => handleNavClick(link.path)}
-              className="text-sm font-medium transition hover:text-primary cursor-pointer"
+              className="text-sm font-medium text-neutral-300 transition hover:text-white cursor-pointer"
             >
               {link.name}
             </button>
@@ -61,7 +67,11 @@ const Navbar = () => {
             <SheetContent>
               <div className="flex flex-col gap-4 mt-10">
                 {links.map((link) => (
-                  <button key={link.name} onClick={() => handleNavClick(link.path)} className="text-lg font-medium text-left">
+                  <button
+                    key={link.name}
+                    onClick={() => handleNavClick(link.path)}
+                    className="text-lg font-medium text-left cursor-pointer"
+                  >
                     {link.name}
                   </button>
                 ))}
