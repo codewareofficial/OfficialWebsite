@@ -1,0 +1,23 @@
+.logo-sweep {
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(168, 255, 96, 0.25) 45%,
+    rgba(191, 255, 128, 0.9) 50%,
+    rgba(168, 255, 96, 0.25) 55%,
+    transparent 70%
+  );
+
+  transform: translateX(-120%);
+  animation: logoSweep 3s linear infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes logoSweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}

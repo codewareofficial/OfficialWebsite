@@ -2,17 +2,18 @@
 export const coreMembers = [
   {
     id: 1,
-    name: "Pratik Rai",
-    role: "Chairperson Blockchain Development",
+     name: "Vedang Kulkarni",
+    role: "President iOS Development",
     photo: "/images/team/bob.jpg",
     linkedin: "https://linkedin.com/in/bob",
   },
   {
     id: 2,
-    name: "Vedang Kulkarni",
-    role: "President iOS Development",
+    name: "Pratik Rai",
+    role: "Chairperson Blockchain Development",
     photo: "/images/team/bob.jpg",
     linkedin: "https://linkedin.com/in/bob",
+
   },
   {
     id: 3,

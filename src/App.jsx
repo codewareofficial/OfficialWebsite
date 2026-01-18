@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
-
+import './App.css'
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Team from "./pages/Team";

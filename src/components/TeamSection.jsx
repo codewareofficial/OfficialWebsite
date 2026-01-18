@@ -1,93 +1,154 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Linkedin } from "lucide-react";
 
-const TeamSection = ({ title, members, cardsPerRow = 3 }) => {
-  // Split members into rows
-  const rows = [];
-  for (let i = 0; i < members.length; i += cardsPerRow) {
-    rows.push(members.slice(i, i + cardsPerRow));
-  }
+// --- GLOW CARD ---
+const GlowCard = ({ children, className = "" }) => {
+  return (
+    <div className={`relative group h-full w-full ${className}`}>
+      <div className="absolute -inset-[2px] bg-gradient-to-r from-[#29B6F6] via-[#64FFDA] to-[#448AFF] rounded-2xl blur-md opacity-20 group-hover:opacity-100 transition duration-500 group-hover:duration-200" />
+      <Card className="relative h-full bg-neutral-900 border border-[#448AFF]/50 overflow-hidden rounded-2xl shadow-xl flex flex-col">
+        {children}
+      </Card>
+    </div>
+  );
+};
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.85 },
-    visible: { opacity: 1, y: 0, scale: 1 },
-  };
+// --- ANIMATION WRAPPER ---
+const AnimatedItem = ({ children, delay = 0 }) => {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2, rootMargin: "-50px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ delay: delay, type: "spring", stiffness: 100, damping: 15 }}
+      className="w-full max-w-sm h-full flex"
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => {
+
+  // Shared LinkedIn Button
+  const LinkedInButton = ({ link }) => (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 text-[#29B6F6] hover:text-[#64FFDA] transition-colors"
+    >
+      <Linkedin size={20} />
+      <span className="text-sm font-medium">Connect</span>
+    </a>
+  );
 
   return (
-    <section className="py-24">
+    <section className="py-24 bg-neutral-950">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-16 text-center">{title}</h2>
+        <h2 className="text-4xl font-bold mb-20 text-center text-white">
+          {title} <span className="text-[#64FFDA]">.</span>
+        </h2>
 
-        {rows.map((rowMembers, rowIndex) => {
-          const [ref, inView] = useInView({
-            triggerOnce: true,
-            threshold: 0.3,
-          });
+        {/* --- PRESIDENT (Stays Largest) --- */}
+        {president && (
+          <div className="flex justify-center mb-16 relative z-20">
+            <AnimatedItem>
+              <GlowCard>
+                <div className="h-80 w-full shrink-0">
+                  <img
+                    src={president.photo}
+                    alt={president.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <CardContent className="text-center py-8 flex-grow flex flex-col justify-center">
+                  <h3 className="text-3xl font-bold text-white">{president.name}</h3>
+                  <p className="text-[#64FFDA] font-semibold text-lg mt-2 uppercase tracking-wide">
+                    {president.role}
+                  </p>
+                  <div className="mt-auto pt-4">
+                    {president.linkedin && <LinkedInButton link={president.linkedin} />}
+                  </div>
+                </CardContent>
+              </GlowCard>
+            </AnimatedItem>
+          </div>
+        )}
 
-          const centerIndex = Math.floor(rowMembers.length / 2);
+        {/* --- CORE TEAM (Flex Wrap) --- */}
+        {coreTeam.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-10 mb-20 relative z-10 items-stretch">
+            {coreTeam.map((member, index) => (
+              <AnimatedItem key={member.id || index} delay={index * 0.15}>
+                <GlowCard>
+                  {/* Image Height: h-72 */}
+                  <div className="h-72 w-full shrink-0">
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  {/* Min Height: 180px */}
+                  <CardContent className="text-center py-8 flex-grow flex flex-col justify-between min-h-[180px]">
+                    <div>
+                        <h3 className="text-2xl font-bold text-white leading-tight">{member.name}</h3>
+                        <p className="text-[#64FFDA] font-semibold text-sm mt-2 uppercase tracking-wide">
+                        {member.role}
+                        </p>
+                    </div>
+                    <div className="mt-4 h-6 flex items-end justify-center">
+                        {member.linkedin ? <LinkedInButton link={member.linkedin} /> : <span className="h-6"/>}
+                    </div>
+                  </CardContent>
+                </GlowCard>
+              </AnimatedItem>
+            ))}
+          </div>
+        )}
 
-          return (
-            <div
-              ref={ref}
-              key={rowIndex}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center mb-16"
-            >
-              {rowMembers.map((member, i) => {
-                // Center first, then sides together
-                const delay = i === centerIndex ? 0 : 0.25;
+        {/* --- SEMI-CORE TEAM (Grid) --- */}
+        {semiCoreTeam.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center items-stretch">
+            {semiCoreTeam.map((member, index) => {
+              const delay = (index % 3) * 0.1;
+              return (
+                <AnimatedItem key={member.id || index} delay={delay}>
+                  <GlowCard>
+                    {/* UPDATED: h-72 (Matches Core Team) */}
+                    <div className="h-72 w-full shrink-0">
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
 
-                return (
-                  <motion.div
-                    key={member.id}
-                    variants={cardVariants}
-                    initial="hidden"
-                    animate={inView ? "visible" : "hidden"}
-                    transition={{
-                      delay,
-                      type: "spring",
-                      stiffness: 120,
-                      damping: 18,
-                    }}
-                    className="w-full max-w-sm"
-                  >
-                    <Card className="overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 bg-background">
-                      {/* IMAGE */}
-                      <div className="h-72 w-full">
-                        <img
-                          src={member.photo}
-                          alt={member.name}
-                          className="w-full h-full object-cover object-center"
-                        />
+                    {/* UPDATED: min-h-[180px] & text sizes (Matches Core Team) */}
+                    <CardContent className="text-center py-8 flex-grow flex flex-col justify-between min-h-[180px]">
+                      <div>
+                          {/* Text size increased to 2xl to match Core */}
+                          <h3 className="text-2xl font-bold text-white leading-tight">{member.name}</h3>
+                          <p className="text-[#64FFDA] font-semibold text-sm mt-2 uppercase tracking-wide">
+                            {member.role}
+                          </p>
                       </div>
 
-                      {/* INFO */}
-                      <CardContent className="text-center py-6">
-                        <h3 className="text-xl font-semibold">
-                          {member.name}
-                        </h3>
-                        <p className="text-muted-foreground text-sm mt-1">
-                          {member.role}
-                        </p>
+                      <div className="mt-4 h-6 flex items-end justify-center">
+                          {member.linkedin ? <LinkedInButton link={member.linkedin} /> : <span className="h-6"/>}
+                      </div>
+                    </CardContent>
+                  </GlowCard>
+                </AnimatedItem>
+              );
+            })}
+          </div>
+        )}
 
-                        {member.linkedin && (
-                          <a
-                            href={member.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block mt-3 text-primary hover:underline"
-                          >
-                            LinkedIn
-                          </a>
-                        )}
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
-          );
-        })}
       </div>
     </section>
   );

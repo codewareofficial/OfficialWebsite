@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const links = [
     { name: "Home", path: "/" },
@@ -21,56 +22,83 @@ const Navbar = () => {
       navigate(route || "/");
       setTimeout(() => {
         const element = document.getElementById(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100); // small delay to ensure element exists
+        if (element) element.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     } else {
       navigate(path);
     }
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-neutral-950/95 backdrop-blur border-neutral-800">
-      <div className="mx-auto max-w-7xl px-4 h-20 flex items-center justify-between">
+    // Updated: Border uses Royal Blue (#448AFF)
+    <header className="sticky top-0 z-50 w-full border-b border-[#448AFF]/30 bg-neutral-950/80 backdrop-blur">
+      <div className="mx-auto max-w-7xl px-4 h-24 flex items-center justify-between">
 
         {/* Logo */}
-        <Link to="/">
+        <Link to="/" className="flex-shrink-0 group">
           <img
-            src="/images/updatedlogo.png" // place your logo in public/images/logo.png
+            src="/images/logo.png"
             alt="Codeware Logo"
-            className="h-16 w-auto"
+            // Updated: Drop shadow uses Mint Green (#64FFDA / RGB: 100,255,218)
+            className="h-14 w-auto object-contain transition duration-300
+                       drop-shadow-[0_0_12px_rgba(100,255,218,0.25)]
+                       group-hover:drop-shadow-[0_0_18px_rgba(100,255,218,0.5)]"
           />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 items-center">
-          {links.map((link) => (
-            <button
-              key={link.name}
-              onClick={() => handleNavClick(link.path)}
-              className="text-sm font-medium text-neutral-300 transition hover:text-white cursor-pointer"
-            >
-              {link.name}
-            </button>
-          ))}
+        <nav className="hidden md:flex gap-8 items-center">
+          {links.map((link) => {
+            const isActive = location.pathname === link.path;
+
+            return (
+              <button
+                key={link.name}
+                onClick={() => handleNavClick(link.path)}
+                className={`
+                  relative text-sm font-medium transition-all duration-300
+                  ${isActive ? "text-[#64FFDA]" : "text-[#29B6F6]"}
+                  hover:text-[#64FFDA]
+                `}
+                // Above: Active is Mint, Default is Sky Blue, Hover is Mint
+              >
+                <span className="relative z-10">{link.name}</span>
+
+                {/* Glow underline */}
+                <span
+                  className="
+                    absolute left-0 -bottom-1 h-[2px] w-0 bg-[#64FFDA]
+                    transition-all duration-300
+                    group-hover:w-full
+                  "
+                />
+              </button>
+            );
+          })}
         </nav>
 
         {/* Mobile Menu */}
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon">
+              <Button
+                variant="outline"
+                size="icon"
+                // Updated: Border/Text Sky Blue, Hover bg Royal Blue tint
+                className="border-[#29B6F6]/40 text-[#29B6F6] hover:bg-[#448AFF]/10"
+              >
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent>
-              <div className="flex flex-col gap-4 mt-10">
+            {/* Updated: Sheet Border uses Royal Blue */}
+            <SheetContent className="bg-neutral-950 border-l border-[#448AFF]/30">
+              <div className="flex flex-col gap-6 mt-10">
                 {links.map((link) => (
                   <button
                     key={link.name}
                     onClick={() => handleNavClick(link.path)}
-                    className="text-lg font-medium text-left cursor-pointer"
+                    // Updated: Text Sky Blue, Hover Mint Green
+                    className="text-lg font-medium text-[#29B6F6] hover:text-[#64FFDA] transition"
                   >
                     {link.name}
                   </button>
