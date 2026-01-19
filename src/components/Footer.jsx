@@ -2,31 +2,36 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-neutral-950 text-white pb-12 pt-8 border-t border-[#448AFF]/20">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+    <footer className="bg-neutral-950 text-white py-6 border-t border-[#448AFF]/10">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
 
-        {/* Logo & Tagline */}
-        <div className="text-center md:text-left">
-          <Link to="/" className="text-2xl font-bold group inline-block">
-            CodeWare<span className="text-[#64FFDA] group-hover:animate-pulse">.</span>
+          {/* Left: Brand Identity (Slightly smaller for professional look) */}
+          <Link to="/" className="flex items-center group">
+            <img src="/images/logo.png" alt="Logo" className="h-6 w-auto mr-2.5" />
+            <span className="text-lg font-black italic tracking-tighter uppercase">
+              CodeWare<span className="text-[#64FFDA]">.</span>
+            </span>
           </Link>
-          <p className="text-neutral-400 mt-2 text-sm">
-            Where Coders Compete, Build, and Grow.
-          </p>
-        </div>
 
-        {/* Quick Links */}
-        <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm font-medium text-neutral-400">
-          <Link to="/" className="hover:text-[#64FFDA] transition-colors duration-300">Home</Link>
-          <Link to="/about" className="hover:text-[#64FFDA] transition-colors duration-300">About</Link>
-          <Link to="/events" className="hover:text-[#64FFDA] transition-colors duration-300">Events</Link>
-          <Link to="/team" className="hover:text-[#64FFDA] transition-colors duration-300">Team</Link>
-          {/* Connect link scrolls to top of this section usually, or we can remove it since the icons are right above */}
-        </div>
-      </div>
+          {/* Center: The Core "Legal & Brand" Info */}
+          <div className="flex items-center gap-4 text-neutral-500 text-[10px] uppercase tracking-[0.2em] font-medium">
+            <span>© {new Date().getFullYear()}</span>
+            <span className="hidden md:inline text-neutral-800">|</span>
+            <span className="whitespace-nowrap">All Rights Reserved</span>
+          </div>
 
-      <div className="mt-8 pt-8 border-t border-neutral-800 text-center text-neutral-500 text-xs">
-        © {new Date().getFullYear()} CodeWare. All rights reserved.
+          {/* Right: Full Professional Legal Links */}
+          <div className="flex gap-8 text-[10px] uppercase tracking-[0.15em] font-bold text-neutral-400">
+            <Link to="/privacy" className="hover:text-[#64FFDA] transition-colors whitespace-nowrap">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-[#64FFDA] transition-colors whitespace-nowrap">
+              Terms of Service
+            </Link>
+          </div>
+
+        </div>
       </div>
     </footer>
   );
