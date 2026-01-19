@@ -93,7 +93,7 @@ export const semiCoreMembers = [
     id: 107,
     name: "Srushti Chaudhari",
     role: "Semi-Core Member",
-    photo: "/images/team/profiles/chugli2.png",
+    photo: "/images/team/profiles/shrushti.png",
     linkedin: "https://linkedin.com/in/linustorvalds",
   },
   {
