@@ -39,7 +39,7 @@ export const coreMembers = [
   {
     id: 6,
     name: "Kritish Bokde",
-    role: "Chairperson, App Development",
+    role: "Chairperson App Development",
     photo: "/images/team/profiles/kritish.png",
     linkedin: "https://www.linkedin.in/in/kritish-bokde91",
   },
@@ -52,7 +52,7 @@ export const semiCoreMembers = [
     name: "Janhavi Naik",
     role: "Literature Head",
     photo: "/images/team/profiles/jhanvi.png",
-    linkedin: "https://www.linkedin.com/in/srushti-chaudhari-a28235345",
+    linkedin: "https://www.linkedin.com/in/janhavi-naik-1b5474270",
   },
   {
     id: 102,
@@ -87,14 +87,14 @@ export const semiCoreMembers = [
     name: "Gauri Joge",
     role: "Comms Strategist",
     photo: "/images/team/profiles/gauri.png",
-    linkedin: "https://linkedin.com/in/linustorvalds",
+    linkedin: "https://linkedin.com/in/gauri-joge",
   },
   {
     id: 107,
     name: "Srushti Chaudhari",
     role: "Content Creation Head",
     photo: "/images/team/profiles/shrushti.png",
-    linkedin: "https://linkedin.com/in/linustorvalds",
+    linkedin: "https://www.linkedin.com/in/srushti-chaudhari-a28235345",
   },
   {
     id: 108,

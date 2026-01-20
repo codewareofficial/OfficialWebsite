@@ -3,11 +3,9 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Linkedin } from "lucide-react";
 
-// --- GLOW CARD (Cohesive with Collective Core branding) ---
 const GlowCard = ({ children, className = "" }) => {
   return (
     <div className={`relative group h-full w-full ${className}`}>
-      {/* Precision Gradient Glow */}
       <div className="absolute -inset-[2px] bg-gradient-to-r from-[#29B6F6] via-[#64FFDA] to-[#448AFF] rounded-2xl blur-md opacity-20 group-hover:opacity-100 transition duration-500 group-hover:duration-200" />
       <Card className="relative h-full bg-neutral-900 border border-[#448AFF]/50 overflow-hidden rounded-2xl shadow-xl flex flex-col p-0">
         {children}
@@ -16,7 +14,6 @@ const GlowCard = ({ children, className = "" }) => {
   );
 };
 
-// --- ANIMATION WRAPPER (High-Performance Spring Physics) ---
 const AnimatedItem = ({ children, delay = 0 }) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   return (
@@ -48,41 +45,34 @@ const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => 
   return (
     <section className="py-12 bg-neutral-950">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section Header */}
         <h2 className="text-4xl font-bold mb-16 text-center text-white uppercase tracking-tighter">
           {title} <span className="text-[#64FFDA]">.</span>
         </h2>
 
-        {/* --- PRESIDENT (Dual-Role Elite Layout) --- */}
+        {/* --- PRESIDENT (Fixed Image Gap) --- */}
         {president && (
           <div className="flex justify-center mb-20 relative z-20">
             <AnimatedItem>
               <GlowCard className="w-[300px] md:w-[340px]">
-                {/* Fixed container with bg-black to hide gaps */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-black">
+                {/* Changed aspect-ratio to a fixed height & inset-0 for the image */}
+                <div className="relative h-[380px] md:h-[420px] w-full overflow-hidden bg-black">
                   <img
                     src={president.photo}
                     alt={president.name}
-                    /* Added scale-[1.01] to force image to fill all edges */
-                    className="w-full h-full object-cover object-top scale-[1.01] transition-transform duration-500 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                <CardContent className="text-center pt-4 pb-6 px-4 flex-grow flex flex-col bg-black/40">
+                <CardContent className="text-center pt-4 pb-6 px-4 flex-grow flex flex-col bg-neutral-900 border-t border-[#448AFF]/20">
                   <h3 className="text-2xl font-black text-white leading-tight uppercase tracking-tighter">
                     {president.name}
                   </h3>
-
-                  {/* Primary Executive Role */}
                   <p className="text-[#64FFDA] font-bold text-sm uppercase tracking-[0.2em] mt-1.5">
                     President
                   </p>
-
-                  {/* Technical Metadata */}
                   <p className="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mt-1.5 opacity-80">
                     <span className="text-[#448AFF]/50 mr-1">//</span>
                     iOS Development Chairperson
                   </p>
-
                   <div className="mt-5">
                     {president.linkedin && <LinkedInButton link={president.linkedin} />}
                   </div>
@@ -108,11 +98,9 @@ const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => 
                   <h3 className="text-xl font-bold text-white leading-tight uppercase tracking-tight">
                     {member.name}
                   </h3>
-
                   <p className="text-[#64FFDA] font-semibold text-[10px] uppercase tracking-[0.15em] mt-1 whitespace-nowrap overflow-hidden text-ellipsis px-2">
                     {member.role}
                   </p>
-
                   <div className="mt-4 flex justify-center">
                     {member.linkedin ? <LinkedInButton link={member.linkedin} /> : <div className="h-5"/>}
                   </div>
