@@ -62,7 +62,7 @@ const Events = () => {
       {/* Footer System Status */}
       <footer className="fixed bottom-10 left-6 md:left-16 opacity-20 hidden md:block">
         <div className="text-[10px] font-mono text-white uppercase tracking-[1em]">
-          Codeware // 2026_Archive
+      
         </div>
       </footer>
     </div>

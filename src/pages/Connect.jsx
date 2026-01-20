@@ -6,7 +6,7 @@ const Connect = () => {
     {
       name: "GitHub",
       icon: <Github size={32} />,
-      link: "https://github.com/codeware-official", // Replace with actual link
+      link: "https://github.com/your-org", // Replace with actual link
       color: "hover:text-white",
     },
     {
