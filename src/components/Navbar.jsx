@@ -35,30 +35,34 @@ const Navbar = () => {
     };
   }, []);
 
+  // UPDATED LINKS ARRAY
   const links = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/#who-we-are" },
+    { name: "About", path: "/#about" }, // Pointing to the new unified section ID
     { name: "Events", path: "/events" },
     { name: "Team", path: "/team" },
     { name: "Join", path: "/join" },
-    { name: "Connect", path: "/#connect" }, // Updated from #footer to #connect
+    { name: "Connect", path: "/#connect" },
   ];
 
   const handleNavClick = (path) => {
     if (path.includes("#")) {
       const [route, hash] = path.split("#");
 
-      // If we are already on the route (Home), just scroll
+      // Check if we are already on the home page (where the #about id lives)
       if (location.pathname === (route || "/")) {
         const element = document.getElementById(hash);
-        if (element) element.scrollIntoView({ behavior: "smooth" });
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
       } else {
-        // If we are on a different page (like /team), navigate first
+        // Navigate to home first, then scroll
         navigate(route || "/");
-        // Wait for page load before scrolling
         setTimeout(() => {
           const element = document.getElementById(hash);
-          if (element) element.scrollIntoView({ behavior: "smooth" });
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
         }, 300);
       }
     } else {
@@ -88,7 +92,9 @@ const Navbar = () => {
 
         <nav className="hidden md:flex gap-10 items-center">
           {links.map((link) => {
-            const isActive = location.pathname === link.path;
+            // Updated active state logic for hash links
+            const isActive = location.pathname === link.path || (location.hash === `#${link.path.split('#')[1]}`);
+
             return (
               <button
                 key={link.name}
@@ -101,6 +107,7 @@ const Navbar = () => {
           })}
         </nav>
 
+        {/* Mobile Navigation */}
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>

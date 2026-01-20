@@ -1,15 +1,13 @@
 import Hero from "@/components/Hero";
-import WhatWeDo from "@/components/WhatweDo";
-import WhoWeAre from "@/components/WhoweAre";
-
+import AboutSection from "@/components/AboutSection"; // New unified component
 
 const Home = () => {
   return (
-    <div>
-      <Hero/>
-      <WhoWeAre/>
-      <WhatWeDo/>
-      </div>
+    <div className="bg-black">
+      <Hero />
+      <AboutSection />
+      {/* You can add your Join or Events sections below this later */}
+    </div>
   );
 };
 

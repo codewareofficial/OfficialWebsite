@@ -6,19 +6,19 @@ const Connect = () => {
     {
       name: "GitHub",
       icon: <Github size={32} />,
-      link: "https://github.com/your-org", // Replace with actual link
+      link: "https://github.com/codeware-official", // Replace with actual link
       color: "hover:text-white",
     },
     {
       name: "LinkedIn",
       icon: <Linkedin size={32} />,
-      link: "https://linkedin.com/company/your-org",
+      link: "https://www.linkedin.com/company/codeware-coding-club/",
       color: "hover:text-[#0077B5]", // LinkedIn Blue override or keep theme
     },
     {
       name: "Instagram",
       icon: <Instagram size={32} />,
-      link: "https://instagram.com/your-org",
+      link: "https://www.instagram.com/codeware_ycce",
       color: "hover:text-[#E4405F]", // Insta Pink override or keep theme
     },
     {

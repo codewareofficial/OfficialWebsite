@@ -3,31 +3,30 @@ import { coreMembers, semiCoreMembers } from "../data/Team";
 
 const Team = () => {
   // 1. Prepare Core Team Data
-  // Extract President (Index 0) and the rest of the Core team
   const president = coreMembers.length > 0 ? coreMembers[0] : null;
   const restOfCore = coreMembers.length > 1 ? coreMembers.slice(1) : [];
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white pb-20">
+    /* IMPROVEMENT: Added 'pt-32' (Desktop) and 'pt-24' (Mobile).
+       Since Navbar is h-24 (96px), pt-32 gives it exactly the right
+       amount of professional clearance.
+    */
+    <div className="min-h-screen bg-neutral-950 text-white pb-20 pt-24 md:pt-32">
 
-      {/* --- SECTION 1: CORE TEAM ---
-          Layout: President (Top) + Core Members (Centered Flex)
-      */}
+      {/* --- SECTION 1: CORE TEAM --- */}
       <TeamSection
         title="Core Team"
-        president={president}      // Renders top center
-        coreTeam={restOfCore}      // Renders centered flex (President style)
-        semiCoreTeam={[]}          // Empty (No grid here)
+        president={president}
+        coreTeam={restOfCore}
+        semiCoreTeam={[]}
       />
 
-      {/* --- SECTION 2: SEMI-CORE TEAM ---
-          Layout: Grid (Rows of 3)
-      */}
+      {/* --- SECTION 2: SEMI-CORE TEAM --- */}
       <TeamSection
         title="Semi-Core Team"
-        president={null}           // No President in this section
-        coreTeam={[]}              // No centered flex members
-        semiCoreTeam={semiCoreMembers} // Renders in the 3-column Grid
+        president={null}
+        coreTeam={[]}
+        semiCoreTeam={semiCoreMembers}
       />
 
     </div>

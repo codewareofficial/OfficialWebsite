@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Loader2, ArrowRight, Zap } from "lucide-react";
+import { X, Loader2, ArrowUpRight } from "lucide-react";
 
 const Join = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -32,7 +32,7 @@ const Join = () => {
       transition: {
         duration: 0.8,
         ease: "easeOut",
-        delay: 0.2 // Synced to start while letters are falling
+        delay: 0.2
       }
     }
   };
@@ -46,7 +46,10 @@ const Join = () => {
       {/* LEFT SIDE: SYNCED ANIMATION AREA */}
       <div className="flex-1 flex flex-col justify-center px-8 md:px-24 py-16 z-20 bg-black relative">
 
-        <div className="space-y-10 max-w-xl">
+        {/* Blueprint background for added detail */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:60px_60px]" />
+
+        <div className="space-y-10 max-w-xl relative">
 
           <div className="space-y-1">
             {/* Falling JOIN */}
@@ -70,7 +73,7 @@ const Join = () => {
               {titleCodeware.map((char, i) => (
                 <motion.span
                   key={i}
-                  custom={i + 4} // Stagger starts after "JOIN"
+                  custom={i + 4}
                   initial="hidden"
                   animate="visible"
                   variants={letterVariants}
@@ -81,15 +84,17 @@ const Join = () => {
               ))}
             </div>
 
-            {/* Side-sliding SHAPE REALITY (Synced) */}
+            {/* Side-sliding Architect the Invisible */}
             <motion.h2
               initial="hidden"
               animate="visible"
               variants={sideSlideVariants}
-              className="text-3xl md:text-5xl font-light tracking-tight text-neutral-500 uppercase italic pt-4 flex items-center gap-4"
+              className="text-2xl md:text-4xl font-bold tracking-tight pt-6 flex flex-col gap-2"
             >
-              <div className="h-px w-12 bg-[#64FFDA]/30" />
-              Shape Reality.
+              <div className="flex items-center gap-4">
+                <div className="h-px w-12 bg-[#64FFDA]/30" />
+                <span>Architect the <span className="text-neutral-500 font-light italic">Invisible.</span></span>
+              </div>
             </motion.h2>
           </div>
 
@@ -97,26 +102,37 @@ const Join = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="text-neutral-400 text-base md:text-lg leading-relaxed max-w-sm border-l border-neutral-800 pl-6"
+            className="text-neutral-400 text-base md:text-lg leading-relaxed max-w-sm border-l border-neutral-800 pl-6 font-light"
           >
-            The circle for the relentless. Stop watching from the sidelines and start <span className="text-white">architecting the future.</span>
+            We are a collective of <span className="text-white font-medium italic underline decoration-[#64FFDA]/50 underline-offset-4">relentless builders</span> pushing the limits of the digital fabric.
           </motion.p>
 
-          {/* NEON APPLY NOW BUTTON */}
+          {/* UPDATED REGISTER BUTTON */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.4 }}
+            className="pt-4"
           >
             <button
               onClick={() => { setIsFormOpen(true); setIsFormLoading(true); }}
-              className="group relative flex items-center gap-6 bg-[#64FFDA] text-black px-10 py-5 rounded-none font-black uppercase tracking-widest text-sm transition-all duration-300 hover:gap-10 active:scale-95"
+              className="group relative flex items-center justify-between w-64 h-16 bg-white overflow-hidden transition-all duration-300 active:scale-95"
             >
-              <span>Apply Now</span>
-              <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+              {/* Hover Background Fill */}
+              <div className="absolute inset-0 bg-[#64FFDA] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
 
-              {/* Button Border Detail */}
-              <div className="absolute -bottom-1 -right-1 w-full h-full border border-[#64FFDA] -z-10 group-hover:bottom-0 group-hover:right-0 transition-all" />
+              {/* Button Text */}
+              <span className="relative z-10 ml-8 text-black font-black uppercase tracking-[0.2em] text-sm">
+                Register
+              </span>
+
+              {/* Arrow Icon */}
+              <div className="relative z-10 mr-6 text-black transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <ArrowUpRight size={22} strokeWidth={2.5} />
+              </div>
+
+              {/* Decorative Side Line */}
+              <div className="absolute left-0 top-0 h-full w-1 bg-[#64FFDA] group-hover:bg-black transition-colors" />
             </button>
           </motion.div>
         </div>

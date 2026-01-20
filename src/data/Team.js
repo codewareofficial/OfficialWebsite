@@ -19,7 +19,7 @@ export const coreMembers = [
     id: 3,
     name: "Devid Deshmukh",
     role: "Chairperson Web Development",
-    photo: "/images/team/professional_picture.jpg",
+    photo: "/images/team/profiles/professional_picture.png",
     linkedin: "https://linkedin.com/in/charlie",
   },
   {
@@ -33,14 +33,14 @@ export const coreMembers = [
     id: 5,
     name: "Aditya Roy",
     role: "Chairperson, Artificial Intelligence & Machine Learning",
-    photo: "/images/team/profiles/aditya.jpeg",
+    photo: "/images/team/profiles/aditya.png",
     linkedin: "/images/team/profiles/aditya.jpeg",
   },
   {
     id: 6,
     name: "Kritish Bokde",
     role: "Chairperson, App Development",
-    photo: "/images/team/profiles/kritish.jpeg",
+    photo: "/images/team/profiles/kritish.png",
     linkedin: "https://linkedin.com/in/ethan",
   },
 ];
@@ -51,7 +51,7 @@ export const semiCoreMembers = [
     id: 101,
     name: "Janhavi Naik",
     role: "Semi-Core Member",
-    photo: "/images/team/profiles/jhanvi.jpeg",
+    photo: "/images/team/profiles/jhanvi.png",
     linkedin: "https://linkedin.com/in/gracehopper",
   },
   {
@@ -100,7 +100,7 @@ export const semiCoreMembers = [
     id: 108,
     name: "Krushna Kendre",
     role: "EM/HM Head",
-    photo: "/images/team/profiles/Krushna.jpg",
+    photo: "/images/team/profiles/kendre.png",
     linkedin: "https://linkedin.com/in/linustorvalds",
   },
 ];
