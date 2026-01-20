@@ -87,7 +87,7 @@ export const semiCoreMembers = [
     name: "Gauri Joge",
     role: "Comms Strategist",
     photo: "/images/team/profiles/gauri.png",
-    linkedin: "https://linkedin.com/in/gauri-joge",
+    linkedin: "https://www.linkedin.com/in/gauri-joge-a79a80305",
   },
   {
     id: 107,

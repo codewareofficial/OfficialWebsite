@@ -1,8 +1,10 @@
+import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Linkedin } from "lucide-react";
 
+// --- GLOW CARD ---
 const GlowCard = ({ children, className = "" }) => {
   return (
     <div className={`relative group h-full w-full ${className}`}>
@@ -14,6 +16,7 @@ const GlowCard = ({ children, className = "" }) => {
   );
 };
 
+// --- ANIMATION WRAPPER ---
 const AnimatedItem = ({ children, delay = 0 }) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   return (
@@ -49,31 +52,33 @@ const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => 
           {title} <span className="text-[#64FFDA]">.</span>
         </h2>
 
-        {/* --- PRESIDENT (Fixed Image Gap) --- */}
+        {/* --- PRESIDENT (Fixed with // format) --- */}
         {president && (
           <div className="flex justify-center mb-20 relative z-20">
             <AnimatedItem>
-              <GlowCard className="w-[300px] md:w-[340px]">
-                {/* Changed aspect-ratio to a fixed height & inset-0 for the image */}
-                <div className="relative h-[380px] md:h-[420px] w-full overflow-hidden bg-black">
+              <GlowCard className="w-[270px] md:w-[310px]">
+                <div className="relative aspect-[4/5] w-full overflow-hidden">
                   <img
                     src={president.photo}
                     alt={president.name}
-                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                <CardContent className="text-center pt-4 pb-6 px-4 flex-grow flex flex-col bg-neutral-900 border-t border-[#448AFF]/20">
-                  <h3 className="text-2xl font-black text-white leading-tight uppercase tracking-tighter">
+                <CardContent className="text-center pt-3 pb-5 px-4 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-white leading-tight uppercase tracking-tight">
                     {president.name}
                   </h3>
-                  <p className="text-[#64FFDA] font-bold text-sm uppercase tracking-[0.2em] mt-1.5">
+                  <p className="text-[#64FFDA] font-semibold text-[10px] uppercase tracking-[0.15em] mt-1">
                     President
                   </p>
-                  <p className="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mt-1.5 opacity-80">
+
+                  {/* The Slash Format Restored */}
+                  <p className="text-neutral-500 font-mono text-[9px] uppercase tracking-widest mt-1.5 opacity-80">
                     <span className="text-[#448AFF]/50 mr-1">//</span>
                     iOS Development Chairperson
                   </p>
-                  <div className="mt-5">
+
+                  <div className="mt-4 flex justify-center">
                     {president.linkedin && <LinkedInButton link={president.linkedin} />}
                   </div>
                 </CardContent>
@@ -87,7 +92,7 @@ const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => 
           {[...coreTeam, ...semiCoreTeam].map((member, index) => (
             <AnimatedItem key={member.id || index} delay={index * 0.1}>
               <GlowCard className="w-[270px] md:w-[310px]">
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-black">
+                <div className="relative aspect-[4/5] w-full overflow-hidden">
                   <img
                     src={member.photo}
                     alt={member.name}
