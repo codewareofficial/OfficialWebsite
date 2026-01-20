@@ -58,11 +58,13 @@ const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => 
           <div className="flex justify-center mb-20 relative z-20">
             <AnimatedItem>
               <GlowCard className="w-[300px] md:w-[340px]">
-                <div className="relative aspect-[4/5] w-full overflow-hidden">
+                {/* Fixed container with bg-black to hide gaps */}
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-black">
                   <img
                     src={president.photo}
                     alt={president.name}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    /* Added scale-[1.01] to force image to fill all edges */
+                    className="w-full h-full object-cover object-top scale-[1.01] transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
                 <CardContent className="text-center pt-4 pb-6 px-4 flex-grow flex flex-col bg-black/40">
@@ -75,7 +77,7 @@ const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => 
                     President
                   </p>
 
-                  {/* Technical Metadata (Shorthand applied: AI & ML, etc.) */}
+                  {/* Technical Metadata */}
                   <p className="text-neutral-500 font-mono text-[10px] uppercase tracking-widest mt-1.5 opacity-80">
                     <span className="text-[#448AFF]/50 mr-1">//</span>
                     iOS Development Chairperson
@@ -90,12 +92,12 @@ const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => 
           </div>
         )}
 
-        {/* --- TEAM GRID (Dynamic Centering for Grid Orphans) --- */}
+        {/* --- TEAM GRID --- */}
         <div className="flex flex-wrap justify-center gap-x-10 gap-y-14">
           {[...coreTeam, ...semiCoreTeam].map((member, index) => (
             <AnimatedItem key={member.id || index} delay={index * 0.1}>
               <GlowCard className="w-[270px] md:w-[310px]">
-                <div className="relative aspect-[4/5] w-full overflow-hidden">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-black">
                   <img
                     src={member.photo}
                     alt={member.name}
@@ -107,7 +109,6 @@ const TeamSection = ({ title, president, coreTeam = [], semiCoreTeam = [] }) => 
                     {member.name}
                   </h3>
 
-                  {/* Single-Line Professional Role (Ellipsis handles overflows) */}
                   <p className="text-[#64FFDA] font-semibold text-[10px] uppercase tracking-[0.15em] mt-1 whitespace-nowrap overflow-hidden text-ellipsis px-2">
                     {member.role}
                   </p>
