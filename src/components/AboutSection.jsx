@@ -79,36 +79,36 @@ const FloatingBrandIcon = ({ brand }) => {
 const AboutSection = () => {
   const cards = [
     {
-      title: "Coding Contests",
-      desc: "Regular high-stakes challenges designed to hone algorithmic logic and rapid execution under pressure.",
+      title: "Algorithmic Mastery",
+      desc: "We host high-frequency coding marathons designed to push logical limits and master the complexities of data structures in real-time environments.",
       icon: Trophy,
-      label: "System.Acknowledge(Rank_Alpha)",
+      label: "Competitive Excellence",
       id: "01",
-      tag: "COMPETITIVE"
+      tag: "STRATEGY"
     },
     {
-      title: "Mentorship",
-      desc: "Direct sessions with domain chairpersons. We bypass theory to focus on professional deployment.",
+      title: "Direct Mentorship",
+      desc: "Access a direct line to industry architects. We strip away the fluff of traditional learning to focus on deployment, scalability, and clean code standards.",
       icon: Users,
-      label: "Thread.Execute(Peer_to_Peer)",
+      label: "Peer-to-Peer Growth",
       id: "02",
-      tag: "ELITE_GUIDE"
+      tag: "LEADERSHIP"
     },
     {
-      title: "Domain Cells",
-      desc: "Specialized focus across Web3, AI/ML, iOS, and UI/UX led by active industry specialists.",
+      title: "Focused Domains",
+      desc: "Deep-dive into specialized vertical cells including Machine Learning, Decentralized Web, and UI Engineering, lead by domain experts.",
       icon: Layers,
-      label: "Module.Init(Specialization)",
+      label: "Vertical Specialization",
       id: "03",
-      tag: "DEEP_TECH"
+      tag: "ARCHITECTURE"
     },
     {
-      title: "Core Stack",
-      desc: "Leveraging React, Swift, Solidity, and PyTorch to build the next layer of digital existence.",
+      title: "Modern Stack",
+      desc: "Building with the gold standards of the industry. From low-level systems to high-level reactive interfaces, we master the tools that power the web.",
       icon: Zap,
-      label: "Stack.Deploy(Next_Gen)",
+      label: "Production Readiness",
       id: "04",
-      tag: "PRODUCTION"
+      tag: "ENGINEERING"
     }
   ];
 
@@ -139,13 +139,15 @@ const AboutSection = () => {
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: "80px" }}
+            viewport={{ once: true }}
             className="h-[2px] bg-[#64FFDA] mb-8 shadow-[0_0_15px_#64FFDA]"
           />
           <h2 className="text-5xl md:text-8xl font-black uppercase italic tracking-tighter mb-6 leading-[0.85]">
-            The <span className="text-[#64FFDA] drop-shadow-[0_0_10px_rgba(100,255,218,0.3)]">Collective</span><br/>Core.
+            Engineering<br/>
+            <span className="text-[#64FFDA] drop-shadow-[0_0_10px_rgba(100,255,218,0.3)]">The Future</span>.
           </h2>
-          <p className="text-neutral-500 text-lg md:text-2xl font-light max-w-2xl tracking-tight leading-relaxed">
-            Operating at the intersection of <span className="text-white">high-performance engineering</span> and industry-standard architecture.
+          <p className="text-neutral-400 text-lg md:text-2xl font-light max-w-2xl tracking-tight leading-relaxed">
+            CodeWare is a high-performance community focused on <span className="text-white">building resilient software</span> and fostering a culture of technical rigor.
           </p>
         </div>
 
@@ -174,7 +176,7 @@ const AboutSection = () => {
                     <div className="absolute inset-0 bg-[#64FFDA]/20 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-700" />
                     <card.icon size={32} strokeWidth={1} className="text-[#64FFDA] relative z-10 transition-transform duration-500 group-hover:-translate-y-1" />
                   </div>
-                  <span className="text-[10px] font-mono tracking-[0.2em] text-neutral-600 border border-white/10 px-2 py-1 uppercase">
+                  <span className="text-[10px] font-mono tracking-[0.2em] text-neutral-600 border border-white/10 px-3 py-1 uppercase">
                     {card.tag}
                   </span>
                 </div>
@@ -182,13 +184,13 @@ const AboutSection = () => {
                 <h3 className="text-3xl md:text-4xl font-black uppercase mb-4 tracking-tighter group-hover:text-[#64FFDA] transition-colors duration-300">
                   {card.title}
                 </h3>
-                <p className="text-neutral-500 text-sm md:text-base leading-relaxed max-w-[85%] font-light transition-colors group-hover:text-neutral-300">
+                <p className="text-neutral-500 text-sm md:text-base leading-relaxed max-w-[90%] font-light transition-colors group-hover:text-neutral-300">
                   {card.desc}
                 </p>
 
                 <div className="mt-16 flex items-center justify-between">
                    <div className="font-mono text-[10px] text-neutral-600 flex flex-col uppercase">
-                     <span className="text-[8px] opacity-50 mb-1">Status: Active</span>
+                     <span className="text-[8px] opacity-40 mb-1">Domain Path</span>
                      <span className="group-hover:text-white transition-colors">{card.label}</span>
                    </div>
                    <div className="flex items-center gap-3">
@@ -198,7 +200,7 @@ const AboutSection = () => {
                 </div>
               </div>
 
-              {/* Subtle Grid Pattern Overlay */}
+              {/* Grid Pattern Overlay */}
               <div className="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity pointer-events-none"
                 style={{ backgroundImage: 'radial-gradient(#64FFDA 0.5px, transparent 0.5px)', backgroundSize: '24px 24px' }}
               />
