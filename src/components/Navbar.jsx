@@ -10,6 +10,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const [hidden, setHidden] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // NEW: State to control Mobile Sidebar
   const { scrollY } = useScroll();
   const hideTimerRef = useRef(null);
 
@@ -35,10 +36,9 @@ const Navbar = () => {
     };
   }, []);
 
-  // UPDATED LINKS ARRAY
   const links = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/#about" }, // Pointing to the new unified section ID
+    { name: "About", path: "/#about" },
     { name: "Events", path: "/events" },
     { name: "Team", path: "/team" },
     { name: "Join", path: "/join" },
@@ -46,17 +46,17 @@ const Navbar = () => {
   ];
 
   const handleNavClick = (path) => {
+    // 1. Close the mobile sidebar immediately if it's open
+    setIsOpen(false);
+
     if (path.includes("#")) {
       const [route, hash] = path.split("#");
-
-      // Check if we are already on the home page (where the #about id lives)
       if (location.pathname === (route || "/")) {
         const element = document.getElementById(hash);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
       } else {
-        // Navigate to home first, then scroll
         navigate(route || "/");
         setTimeout(() => {
           const element = document.getElementById(hash);
@@ -90,11 +90,10 @@ const Navbar = () => {
           />
         </Link>
 
+        {/* Desktop Navigation - Remains Unchanged */}
         <nav className="hidden md:flex gap-10 items-center">
           {links.map((link) => {
-            // Updated active state logic for hash links
             const isActive = location.pathname === link.path || (location.hash === `#${link.path.split('#')[1]}`);
-
             return (
               <button
                 key={link.name}
@@ -107,23 +106,21 @@ const Navbar = () => {
           })}
         </nav>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - UPDATED with state control */}
         <div className="md:hidden">
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="border-[#29B6F6]/40 text-[#29B6F6] hover:bg-[#448AFF]/10">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent className="bg-neutral-950 border-l border-[#448AFF]/30 text-white">
-              <div className="flex flex-col gap-6 mt-10">
+              <div className="flex flex-col gap-8 mt-12">
                 {links.map((link) => (
                   <button
                     key={link.name}
-                    onClick={() => {
-                      handleNavClick(link.path);
-                    }}
-                    className="text-xl font-medium text-left text-[#29B6F6] hover:text-[#64FFDA] transition"
+                    onClick={() => handleNavClick(link.path)}
+                    className="text-2xl font-semibold text-left text-[#29B6F6] hover:text-[#64FFDA] transition-all duration-200 active:scale-95"
                   >
                     {link.name}
                   </button>
