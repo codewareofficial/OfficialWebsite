@@ -9,15 +9,15 @@ const Team = () => {
   const faculty = {
     name: "Dr.Kavita Singh",
     role: "Faculty In-Charge",
-    photo: "/images/faculty.png", // Make sure to add this image
-    linkedin: "#"
+    photo: "/images/faculty.png",
+    linkedin: "https://www.linkedin.com/in/dr-kavita-r-singh-a497874b"
   };
 
   const visionary = {
     name: "Mr.Nikhil Tamrakar",
     role: "Visionary",
-    photo: "/images/visionary.png", // Make sure to add this image
-    linkedin: "#"
+    photo: "/images/visionary.png",
+    linkedin: "https://www.linkedin.com/in/nikhil-tamrakar-090374187"
   };
 
   return (

@@ -24,7 +24,7 @@ const Connect = () => {
     {
       name: "Email",
       icon: <Mail size={32} />,
-      link: "mailto:contact@codeware.com",
+      link: "mailto:codewareofficial@gmail.com",
       color: "hover:text-[#64FFDA]",
     },
   ];
