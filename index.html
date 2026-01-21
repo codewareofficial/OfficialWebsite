@@ -6,27 +6,35 @@
 
     <title>C O D E W A R E</title>
 
-    <link rel="icon" type="image/png" href="/images/logo.png" />
-    <link rel="apple-touch-icon" href="/images/logo.png" />
-    <link rel="mask-icon" href="/images/logo.png" color="#64FFDA" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
-    <meta name="description" content="CODEWARE - Architecting the Invisible." />
+    <meta name="description" content="CODEWARE - Professional Tech Community. Architecting the Invisible." />
     <meta property="og:title" content="CODEWARE" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/logo.png" />
+    <meta property="og:description" content="Join our tech community and build the future with us." />
+    <meta property="og:image" content="/android-chrome-512x512.png" />
 
     <style>
-      /* This ensures the screen is black immediately, making the site feel premium */
       html, body {
         margin: 0;
         padding: 0;
         background-color: #000000;
         color: white;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      /* Optional: Hide scrollbar during initial load */
+      body {
+        overflow-x: hidden;
       }
     </style>
   </head>
   <body>
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
