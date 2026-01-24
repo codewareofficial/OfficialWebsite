@@ -4,7 +4,7 @@ export const coreMembers = [
     id: 1,
      name: "Vedang Kulkarni",
     role: "President iOS Development",
-    photo: "/images/team/profiles/president..jpeg",
+    photo: "/images/team/profiles/Minimal Profile Photo Instagram Post.png",
     linkedin: "https://www.linkedin.com/in/vedang-kulkarni-vk18",
   },
   {

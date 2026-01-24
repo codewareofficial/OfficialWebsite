@@ -91,3 +91,33 @@ html {
   }
 }
 
+/* Mobile / Touch devices: enable hover-like styles so touch users see the same effects
+   We intentionally scope to devices that don't support hover or small screens so
+   desktop hover behavior remains unchanged. The selectors target Tailwind's
+   generated utility class names using attribute selectors (safe and non-invasive).
+*/
+@media (hover: none) and (pointer: coarse), (max-width: 767px) {
+  /* scale effects */
+  [class*="group-hover:scale-110"] { transform: scale(1.10) !important; }
+  [class*="group-hover:scale-105"] { transform: scale(1.05) !important; }
+
+  /* opacity / visibility */
+  [class*="group-hover:opacity-100"] { opacity: 1 !important; }
+  [class*="group-hover:opacity-20"] { opacity: 0.20 !important; }
+
+  /* translations */
+  [class*="group-hover:translate-y-0"] { transform: translateY(0) !important; }
+  [class*="group-hover:translate-y-full"] { transform: translateY(100%) !important; }
+  [class*="group-hover:translate-x-1"] { transform: translateX(0.25rem) !important; }
+  [class*="group-hover:-translate-y-1"] { transform: translateY(-0.25rem) !important; }
+
+  /* background / color changes (best-effort) */
+  [class*="group-hover:bg-black"] { background-color: #000 !important; }
+  [class*="group-hover:bg[#64FFDA]"] { background-color: #64FFDA !important; }
+  [class*="group-hover:text-white"] { color: #fff !important; }
+
+  /* border / shadow / drop-shadow */
+  [class*="group-hover:border-white"] { border-color: rgba(255,255,255,0.2) !important; }
+  [class*="group-hover:drop-shadow"] { filter: drop-shadow(0 0 14px rgba(100,255,218,0.25)) !important; }
+}
+

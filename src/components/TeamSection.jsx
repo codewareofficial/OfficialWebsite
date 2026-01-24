@@ -133,7 +133,7 @@ const TeamSection = ({ title, faculty, visionary, president, coreTeam = [], semi
                   <h3 className="text-xl font-bold text-white uppercase tracking-tight">{president.name}</h3>
                   <p className="text-[#64FFDA] font-semibold text-[10px] uppercase tracking-[0.15em] mt-1">President</p>
                   <p className="text-neutral-500 font-mono text-[9px] uppercase tracking-widest mt-1.5 opacity-80">
-                    <span className="text-[#448AFF]/50 mr-1">//</span> iOS Development Chairperson
+                    <span className="text-[#448AFF]/50 mr-1">//</span>Chairperson apple Development 
                   </p>
                   <div className="mt-4 flex justify-center">{president.linkedin && <LinkedInButton link={president.linkedin} />}</div>
                 </CardContent>
